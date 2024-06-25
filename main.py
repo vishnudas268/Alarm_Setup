@@ -8,9 +8,10 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Digital-7"
-WORK_MIN = 25
-SHORT_BREAK_MIN = 5
-LONG_BREAK_MIN = 20
+WORK_MIN = 1
+SHORT_BREAK_MIN = 2
+LONG_BREAK_MIN = 3
+reps = 0
 
 
 # ---------------------------- TIMER RESET ------------------------------- #
@@ -18,7 +19,17 @@ LONG_BREAK_MIN = 20
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 def start_task():
-    count_down(converted_time)
+    global reps
+    reps += 1
+    work_time = WORK_MIN * 60
+    short_break = SHORT_BREAK_MIN * 60
+    long_break = LONG_BREAK_MIN * 60
+    if reps % 3 == 0:
+        count_down(short_break)
+    elif reps % 7 == 0:
+        count_down(long_break)
+    else:
+        count_down(work_time)
 
 
 def reset_task():
